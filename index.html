@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSサンプル</title>
+</head>
+
+<body>
+    <dl class="omiyage">
+    </dl>
+    <script>
+        // let omiyage = [
+        //     "深谷ネギ",
+        //     "焼売",
+        //     "タピオカ",
+        //     "ピーナッツ",
+        //     "餃子",
+        //     "りんご",
+        //     "ゼリーフライ",
+        //     "有明のハーバー",
+        //     "梨",
+        //     "赤飯饅頭"
+        // ]
+        // window.addEventListener("load", () => {
+        //     let ul = document.querySelector(".omiyage");
+        //     omiyage.forEach(item => {
+        //         let li = document.createElement("li");
+        //         li.innerHTML = item;
+        //         ul.appendChild(li);
+        //     });
+        // });
+
+        let omiyage = {
+            items: [
+                {
+                    name: "深谷ネギ",
+                    description: "深谷市のネギ",
+                    city: "埼玉"
+                },
+                {
+                    name: "焼売",
+                    description: "崎陽軒が有名です。",
+                    city: "神奈川"
+                },
+                {
+                    name: "タピオカ",
+                    description: "キャッサバが原料のもちもちした食べ物。",
+                    city: "東京"
+                },
+                {
+                    name: "ピーナッツ",
+                    description: "落花生ともいう。",
+                    city: "千葉"
+                },
+                {
+                    name: "餃子",
+                    description: "宇都宮が美味しいです。",
+                    city: "栃木"
+                },
+                {
+                    name: "りんご",
+                    description: "信濃スイートが美味しいです。",
+                    city: "長野"
+                },
+                {
+                    name: "ゼリーフライ",
+                    description: "埼玉のB級グルメ",
+                    city: "埼玉"
+                },
+                {
+                    name: "有明のハーバー",
+                    description: "お菓子です。",
+                    city: "神奈川"
+                },
+                {
+                    name: "梨",
+                    description: "果物です。",
+                    city: "千葉"
+                },
+                {
+                    name: "赤飯饅頭",
+                    description: "赤飯が包まれているおまんじゅう。おやつに食べます。",
+                    city: "長野"
+                },
+            ]
+        };
+
+        window.addEventListener("load", () => {
+            let dl = document.querySelector(".omiyage");
+            omiyage.items.forEach(item => {
+                // dtタグをつくる
+                let dt = document.createElement("dt");
+                // ddタグをつくる
+                let dd = document.createElement("dd");
+                // 中身を入れる
+                dt.innerHTML = item.name;
+                dd.innerHTML = item.description;
+                // dlタグに追加する
+                dl.appendChild(dt);
+                dl.appendChild(dd);
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

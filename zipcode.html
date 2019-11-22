@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>郵便番号検索</title>
+</head>
+
+<body>
+    <h1>郵便番号検索サイト</h1>
+    <div>
+        <input class="zipcode_input" type="text" placeholder="100-0000">
+        <button class="send">検索する</button>
+    </div>
+    <div class="result">
+        <h2>検索結果</h2>
+        <ul class="address_list">
+            <li><ruby>東京都<rt>ﾄｳｷｮｳﾄ</rt></ruby></li>
+            <li><ruby>世田谷区<rt>ｾﾀｶﾞﾔｸ</rt></ruby></li>
+            <li><ruby>上北沢3<rt>ｶﾐｷﾀｻﾞﾜ3</rt></ruby></li>
+        </ul>
+    </div>
+    <script>
+        // https://gist.github.com/Kazunari-h
+
+        // https://gist.github.com
+        //       /Kazunari-h/
+        //       56a8867cea3488abde57a9297c372019
+        window.addEventListener("load", event => {
+
+            document.querySelector(".send")
+                .addEventListener("click", e => {
+                    let lang = "ja";
+                    let zipcode = document.querySelector(".zipcode_input").value;
+                    document.querySelectorAll(".address_list li")
+                        .forEach(li => {
+                            li.remove()
+                        });
+                    axios
+                        // .get(`https://api.zipaddress.net/?lang=${lang}&zipcode=${zipcode}`)
+                        .get("https://api.zipaddress.net/", {
+                            params: {
+                                lang: lang,
+                                zipcode: zipcode
+                            }
+                        })
+                        // .post()
+                        .then(response => {
+                            let result = document.querySelector(".result")
+                            let ul = document.querySelector(".address_list");
+
+                            [
+                                response.data.data.pref,
+                                response.data.data.city,
+                                response.data.data.town
+                            ].forEach(val => {
+                                let li = document.createElement("li");
+                                li.innerHTML = val;
+                                ul.appendChild(li);
+                            });
+                            result.append(ul);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                })
+        });
+    </script>
+</body>
+
+</html>
