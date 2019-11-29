@@ -30,7 +30,7 @@ const Quiz = props => {
   const [isAnswer, setIsAnswer] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
-  const initComponent = useCallback(() => {
+  useCallback(() => {
     setQuizList(props.data);
     setIsAnswer(false);
     setIsCorrect(false);
@@ -46,7 +46,6 @@ const Quiz = props => {
 
   const chanageNextPage = () => {
     setPageNumber(pageNumber + 1);
-    initComponent();
   };
 
   return (
