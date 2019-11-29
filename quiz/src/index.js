@@ -36,7 +36,7 @@ const Quiz = props => {
     setIsCorrect(false);
   }, [props.data]);
 
-  const answer = (choice) => {
+  const judgeAnswer = (choice) => {
     const quiz = quizList[pageNumber];
     const choice_index = quiz.answer.indexOf(choice);
 
@@ -44,7 +44,7 @@ const Quiz = props => {
     setIsCorrect(choice_index === quiz.correct);
   };
 
-  const next = () => {
+  const chanageNextPage = () => {
     setPageNumber(pageNumber + 1);
     initComponent();
   };
@@ -57,7 +57,7 @@ const Quiz = props => {
           return (
             <Answer
               key={item}
-              clickItem={choice => answer(choice)}
+              clickItem={choice => judgeAnswer(choice)}
             >{item}</Answer>
           );
         })}
@@ -69,7 +69,7 @@ const Quiz = props => {
       )}
       {
         quizList.length - 1 !== pageNumber && (
-          <button onClick={() => next()}>次へ</button>
+          <button onClick={() => chanageNextPage()}>次へ</button>
         )
       }
     </section>
