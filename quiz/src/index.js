@@ -10,7 +10,7 @@ const Answer = props => {
       key={props.key}
       onClick={() => props.clickItem(props.text)}
     >
-      {props.text}
+      {props.children}
     </li>
   )
 }
@@ -19,7 +19,7 @@ const CorrectAnswer = props => {
   return (
     <div className="sample">
       <div>{props.is_correct ? "正解" : "不正解"}</div>
-      <div>答え: {props.correct_text}</div>
+      <div>答え: {props.children}</div>
     </div>
   )
 }
@@ -57,17 +57,15 @@ const Quiz = props => {
           return (
             <Answer
               key={item}
-              text={item}
               clickItem={choice => answer(choice)}
-            />
+            >{item}</Answer>
           );
         })}
       </ul>
       {isAnswer && (
         <CorrectAnswer
           is_correct={isCorrect}
-          correct_text={quizList[pageNumber].answer[quizList[pageNumber].correct]}
-        />
+        >{quizList[pageNumber].answer[quizList[pageNumber].correct]}</CorrectAnswer>
       )}
       {
         quizList.length - 1 !== pageNumber && (
