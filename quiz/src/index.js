@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-let data = require("./data.json");
+const data = require("./data.json");
 
 const Answer = props => {
   return (
